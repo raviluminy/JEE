@@ -39,7 +39,7 @@
 				<div id="wrapper">
 					<div id="register" class="animate form">
 						<form action="edition.html" autocomplete="on"
-							contenteditable="false">
+							contenteditable="false" method="post">
 							<h1>${person.firstName} ${person.name}</h1>
 							<input type="hidden" name="id" value="${person.id}"/>
 							<ul>

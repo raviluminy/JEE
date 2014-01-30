@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="x"   uri="http://java.sun.com/jsp/jstl/xml"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="fr" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="fr" class="no-js ie7 lt8"> <![endif]-->
@@ -43,25 +43,16 @@
 				<th>Anniversaire</th>
 				<th>Site internet</th>
 			</tr>
-			<tr id='person' onclick="document.location='details.html';">
-			<!-- for-each row -->
-			<c:forEach var="person" items="${person.id}"
-				<td><c:out ${person.id}</td>
-				<td>Gairoard</td>
-				<td>Lionel</td>
-				<td>lionel.gairoard@gmail.com</td>
-				<td>03/12/1989</td>
-				<td><a href=http://www.google.fr>www.google.fr</a></td>
-				</c:forEach>
-			</tr>
-			<tr id='person' onclick="document.location='details.html';">
-				<td>GA0312</td>
-				<td>Gairoard</td>
-				<td>Arnaud</td>
-				<td>arnaud.gairoard@gmail.com</td>
-				<td>03/12/1989</td>
-				<td><a href=http://www.google.fr>www.google.fr</a></td>
-			</tr>
+			<c:forEach var="person" items="${person.id}">
+				<tr onclick="document.location='details.html';">
+					<td>${person.id}</td>
+					<td>${person.name}</td>
+					<td>${person.firstname}</td>
+					<td>${person.mail}</td>
+					<td>${person.birthdate}</td>
+					<td><a href="http://${person.website}">{person.website}</a></td>
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 </body>

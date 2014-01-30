@@ -16,5 +16,7 @@
 	<classpathentry kind="lib" path="/home/lemon/Documents/jee/work2/jee/WebContent/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="/home/lemon/Documents/jee/work2/jee/WebContent/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/home/lemon/Documents/jee/work2/jee/WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="lib/jstl.jar"/>
+	<classpathentry kind="lib" path="lib/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
