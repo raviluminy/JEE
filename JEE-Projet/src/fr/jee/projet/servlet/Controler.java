@@ -27,7 +27,7 @@ import fr.jee.projet.db.Person;
  * @since 1.0
  * 
  */
-@WebServlet(urlPatterns={"*.htm"}, loadOnStartup=1)
+@WebServlet(urlPatterns = { "*.htm" }, loadOnStartup = 1)
 public class Controler extends HttpServlet {
 
 	/**
@@ -53,7 +53,7 @@ public class Controler extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-    	ServletContext context = getServletContext();
+		ServletContext context = getServletContext();
 		String url = context.getInitParameter("db_url");
 		String user = context.getInitParameter("db_user");
 		String pass = context.getInitParameter("db_pass");
@@ -65,7 +65,7 @@ public class Controler extends HttpServlet {
 	 * @see Servlet#destroy()
 	 */
 	public void destroy() {
-		
+
 	}
 
 	/**
@@ -96,68 +96,77 @@ public class Controler extends HttpServlet {
 		// Call the JSP page
 		request.getRequestDispatcher(jspPage).forward(request, response);
 	}
-	
+
 	private String doBackup(HttpServletRequest request) {
 		String nom, prenom, mail, date_naissance, site, pass, pass_confirm;
 		int id;
 		boolean errors = false;
 		StringBuffer message = new StringBuffer();
-		
-		/* Récupération de l'ide de la personne en train d'être modifiée ou en
-		 * train d'être insérée; auquel cas l'id vaudra -1 */
+
+		/*
+		 * Récupération de l'id de la personne en train d'être modifiée ou en
+		 * train d'être insérée; auquel cas l'id vaudra -1
+		 */
 		id = -1;
 		try {
-			id = Integer.parseInt(request.getParameter("id")); // A rajouter en type="hidden" dans le formulaire d'édition
-		} catch(NumberFormatException e) {
+			id = Integer.parseInt(request.getParameter("id")); // A rajouter en
+																// type="hidden"
+																// dans le
+																// formulaire
+																// d'édition
+		} catch (NumberFormatException e) {
 			errors = true;
 			message.append("Erreur lors de la récupération de l'id de la "
 					+ "personne en cours de modification<br/>");
 		}
-		
-		/* Récupération des paramètres du formulaire */
-		prenom 			= request.getParameter("userfirstnamesignup");
-		nom 			= request.getParameter("usernamesignup");
-		date_naissance 	= request.getParameter("birthdatesignup");
-		mail 			= request.getParameter("emailsignup");
-		site 			= request.getParameter("websitesignup"); //Facultatif
-		pass 			= request.getParameter("passwordsignup");
-		pass_confirm	= request.getParameter("passwordsignup_confirm");
 
-		/* Par défaut, on dit qu'il y a des erreurs. On modifiera s'il n'y en a pas */
+		/* Récupération des paramètres du formulaire */
+		prenom = request.getParameter("userfirstnamesignup");
+		nom = request.getParameter("usernamesignup");
+		date_naissance = request.getParameter("birthdatesignup");
+		mail = request.getParameter("emailsignup");
+		site = request.getParameter("websitesignup"); // Facultatif
+		pass = request.getParameter("passwordsignup");
+		pass_confirm = request.getParameter("passwordsignup_confirm");
+
+		/*
+		 * Par défaut, on dit qu'il y a des erreurs. On modifiera s'il n'y en a
+		 * pas
+		 */
 		request.setAttribute("message_type", "error");
-		
+
 		/* Vérification du prénom */
-		if(prenom == null || prenom == "") {
+		if (prenom == null || prenom == "") {
 			errors = true;
 			message.append("Vous devez entrer un prénom<br/>");
 		}
 		/* Vérification du nom */
-		if(nom == null || nom == "") {
+		if (nom == null || nom == "") {
 			errors = true;
 			message.append("Vous devez entrer un nom<br/>");
 		}
 		/* Vérification de la date de naissance */
-		if(date_naissance == null || date_naissance == "") {
+		if (date_naissance == null || date_naissance == "") {
 			errors = true;
 			message.append("Vous devez entrer une date de naissance<br/>");
 		}
 		/* Vérification du mail */
-		if(mail == null || mail == "") {
+		if (mail == null || mail == "") {
 			errors = true;
 			message.append("Vous devez entrer une adresse email<br/>");
 		}
 		/* Vérification du mot de passe */
-		if(pass == null || pass == "") {
+		if (pass == null || pass == "") {
 			errors = true;
 			message.append("Vous devez spécifier un mot de passe<br/>");
 		}
-		if(pass != pass_confirm) {
+		if (pass != pass_confirm) {
 			errors = true;
 			message.append("Les mots de passe ne correspondent pas<br/>");
 		}
-		
+
 		/* Si il n'y a eu aucune erreur */
-		if(!errors){
+		if (!errors) {
 			/* Création du bean à partir des données du formulaire */
 			Person p = new Person();
 			p.setId(id);
@@ -167,9 +176,9 @@ public class Controler extends HttpServlet {
 			p.setName(nom);
 			p.setPassword(pass);
 			p.setWebsite(site);
-			
+
 			/* Si on est en mode édition */
-			if(id != -1) {
+			if (id != -1) {
 				try {
 					/* Mise à jour de la personne */
 					directoryDAO.updatePerson(p);
@@ -177,7 +186,7 @@ public class Controler extends HttpServlet {
 					request.setAttribute("message_type", "success");
 					message.append("La mise à jour a été effectuée avec succès");
 				} catch (SQLException e) {
-					message.append(e.getMessage()+"<br/>");
+					message.append(e.getMessage() + "<br/>");
 				}
 			}
 			/* Sinon, si on est en mode ajout */
@@ -189,20 +198,49 @@ public class Controler extends HttpServlet {
 					request.setAttribute("message_type", "success");
 					message.append("L'insertion a été effectuée avec succès");
 				} catch (SQLException e) {
-					message.append(e.getMessage()+"<br/>");
+					message.append(e.getMessage() + "<br/>");
 				}
 			}
 		}
 
 		/* On joint le message contenant le résultat à la requête */
 		request.setAttribute("message", message);
-		
+
 		/* On retourne la vue jsp */
 		return "/backup.jsp";
 	}
 
 	private String doEdition(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		String nom, prenom, mail, date_naissance, site, pass, pass_confirm;
+		int id;
+		Person newPerson;
+
+		/* Récupération des paramètres du formulaire d'édition */
+		prenom = request.getParameter("userfirstnamesignup");
+		nom = request.getParameter("usernamesignup");
+		date_naissance = request.getParameter("birthdatesignup");
+		mail = request.getParameter("emailsignup");
+		site = request.getParameter("websitesignup"); // Facultatif
+		pass = request.getParameter("passwordsignup");
+		pass_confirm = request.getParameter("passwordsignup_confirm");
+		
+		/* Initialisation des champs d'une personne au sein de la basse de donnée */
+		newPerson = new Person();
+		newPerson.setName(nom);
+		newPerson.setFirstName(prenom);
+		newPerson.setBirthdate(date_naissance);
+		newPerson.setMail(mail);
+		newPerson.setWebsite(site);
+		newPerson.setPassword(pass);
+		newPerson.setFirstName(nom);
+		
+		try {
+			directoryDAO.addPerson(newPerson);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return "/edition.jsp";
 	}
 
@@ -210,36 +248,36 @@ public class Controler extends HttpServlet {
 		String ids = request.getParameter("id");
 		Person p = null;
 		int id = 1;
-		
-		if(ids != null)
+
+		if (ids != null)
 			id = Integer.parseInt(request.getParameter("id"));
-		
+
 		/* virer */
 		p = getPerson1();
-		if(id == 2)
+		if (id == 2)
 			p = getPerson2();
-		request.setAttribute("person", p);
 		/* /virer */
-		
-//		if(id != -1) {
-//			try {
-//				p = directoryDAO.findPerson(id);
-//				if(p == null) System.out.println("p nul");;
-//				request.setAttribute("person", p);
-//				request.setAttribute("page_title", "Détails de "
-//						+ p.getFirstName()+" "+p.getName());
-//			} catch (SQLException e) {e.printStackTrace();}
-//		}
+
+		request.setAttribute("person", p);
+		// if(id != -1) {
+		// try {
+		// p = directoryDAO.findPerson(id);
+		// if(p == null) System.out.println("p nul");;
+		// request.setAttribute("person", p);
+		// request.setAttribute("page_title", "Détails de "
+		// + p.getFirstName()+" "+p.getName());
+		// } catch (SQLException e) {e.printStackTrace();}
+		// }
 		return "/details.jsp";
 	}
 
 	private String doDirectory(HttpServletRequest request) throws SQLException {
-		directoryDAO.findAllPersons();
+		
 		return "/person.jsp";
 	}
-	
+
 	/* Fonctions pour remplacer DAO */
-	private Person getPerson1(){
+	private Person getPerson1() {
 		Person p = new Person();
 		p.setId(1);
 		p.setFirstName("harry");
@@ -250,8 +288,8 @@ public class Controler extends HttpServlet {
 		p.setWebsite("www.qdqzd.com");
 		return p;
 	}
-	
-	private Person getPerson2(){
+
+	private Person getPerson2() {
 		Person p = new Person();
 		p.setId(2);
 		p.setFirstName("jean");
@@ -262,11 +300,12 @@ public class Controler extends HttpServlet {
 		p.setWebsite("www.jeanbon.com");
 		return p;
 	}
-	
-	private Collection<Person> getPersons(){
+
+	private Collection<Person> getPersons() {
 		ArrayList<Person> al = new ArrayList<Person>();
 		al.add(getPerson1());
 		al.add(getPerson2());
 		return al;
 	}
+
 }
