@@ -43,7 +43,7 @@
 				<th>Anniversaire</th>
 				<th>Site internet</th>
 			</tr>
-			<c:forEach var="person" items="${person.id}">
+			<c:forEach var="person" items="${persons}">
 				<tr onclick="document.location='details.html';">
 					<td>${person.id}</td>
 					<td>${person.name}</td>

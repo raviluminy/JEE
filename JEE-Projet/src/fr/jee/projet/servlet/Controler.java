@@ -272,8 +272,9 @@ public class Controler extends HttpServlet {
 	}
 
 	private String doDirectory(HttpServletRequest request) throws SQLException {
-		
-		return "/person.jsp";
+		Collection<Person> col = directoryDAO.findAllPersons();
+		request.setAttribute("persons", col);
+		return "/directory.jsp";
 	}
 
 	/* Fonctions pour remplacer DAO */
