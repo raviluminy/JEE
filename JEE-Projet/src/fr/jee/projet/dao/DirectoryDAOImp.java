@@ -167,12 +167,12 @@ public class DirectoryDAOImp implements DirectoryDAO {
 					+ "VALUES (?, ?, ?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-			preparedStatement.setString(2, p.getName());
-			preparedStatement.setString(3, p.getFirstName());
-			preparedStatement.setString(4, p.getMail());
-			preparedStatement.setString(5, p.getWebsite());
-			preparedStatement.setString(6, p.getBirthdate());
-			preparedStatement.setString(7, p.getPassword());
+			preparedStatement.setString(1, p.getName());
+			preparedStatement.setString(2, p.getFirstName());
+			preparedStatement.setString(3, p.getMail());
+			preparedStatement.setString(4, p.getWebsite());
+			preparedStatement.setString(5, p.getBirthdate());
+			preparedStatement.setString(6, p.getPassword());
 			
 			int n = preparedStatement.executeUpdate();
 
