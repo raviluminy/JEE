@@ -16,7 +16,7 @@ import fr.jee.projet.db.Person;
  * Testing class for JDBC interaction.
  * 
  * @author Lionel Gairoard
- * @author Ravi Patchy
+ * @author Ravi Pachy
  * @version 1.0
  * @since 1.0
  * 
@@ -27,7 +27,8 @@ public class DirectoryJDBCTest {
 	/**
 	 * The DAO service's implementation.
 	 */
-	private DirectoryDAOImp directoryJDBC = new DirectoryDAOImp();
+	private DirectoryDAOImp directoryJDBC = new DirectoryDAOImp(
+			"jdbc:postgresql://localhost/jee", "lionel", "projet");
 
 	/**
 	 * The first person.
