@@ -122,6 +122,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		Person person = null;
+		// TODO Enlever affichage :
+		System.out.println("findPerson(id="+id+") - Début");
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -159,7 +161,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet keys = null;
-
+		// TODO Enlever affichage :
+		System.out.println("addPerson(id="+p.getId()+", nom="+p.getName()+", prenom="+p.getFirstName()+") - Début");
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -183,6 +186,12 @@ public class DirectoryDAOImp implements DirectoryDAO {
 				keys = preparedStatement.getGeneratedKeys();
 				if (keys.next()) {
 					p.setId(keys.getInt(1));
+					// TODO Enlever affichage :
+					System.out.println("findPerson() : Après insertion de "+p.getFirstName()+" "+p.getName()+" id="+p.getId());
+				}
+				else {
+					// TODO Enlever affichage :
+					System.out.println("findPerson() : Après insertion de "+p.getFirstName()+" "+p.getName()+" AUCUNE CLÉ GÉNÉRÉE !");
 				}
 			}
 
