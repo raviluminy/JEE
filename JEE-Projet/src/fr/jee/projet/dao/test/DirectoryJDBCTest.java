@@ -196,8 +196,11 @@ public class DirectoryJDBCTest extends TestCase{
 	 */
 	@Test
 	public void deletePerson1() throws SQLException {
-		int expected = 1;
-		directoryDAO.deletePerson(person1);
+		int before = directoryDAO.findAllPersons().size();
+		int expected = before - 1;
+		// On récupère la première personne de la BDD
+		Person q = directoryDAO.findAllPersons().iterator().next();
+		directoryDAO.deletePerson(q);
 		int actual = directoryDAO.findAllPersons().size();
 		Assert.assertEquals(expected, actual);
 	}
