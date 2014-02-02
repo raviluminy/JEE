@@ -38,13 +38,13 @@
 					id="toregister"></a>
 				<div id="wrapper">
 					<div id="register" class="animate form">
-						<form action="sauvegarde.html" autocomplete="on">
+						<form action="backup.html" autocomplete="on">
 							<h1>Inscription</h1>
 							<p>
 								<input type="hidden" name="id" value="${person.id}">
 							<p>
 								<label for="userfirstnamesignup" class="ufirstname"
-									data-icon="u">PrÃ©nom</label> <input id="userfirstnamesignup"
+									data-icon="u">Pr&eacute;nom</label> <input id="userfirstnamesignup"
 									name="userfirstnamesignup" required="required" type="text"
 									placeholder="Pierre" />
 							</p>
@@ -55,7 +55,7 @@
 							</p>
 							<p>
 								<label for="emailsignup" class="youmail" data-icon="e">
-									Adresse Ã©lectronique</label> <input id="emailsignup"
+									Adresse &eacute;lectronique</label> <input id="emailsignup"
 									name="emailsignup" required="required" type="email"
 									placeholder="monadresse@mail.com" />
 							</p>
@@ -86,9 +86,9 @@
 								<input type="submit" value="Enregistrer" />
 							</p>
 							<p class="change_link">
-								DÃ©jÃ  membre ? <a href="index.html" class="to_login">Se
-									connecter </a>
-							</p>
+                                Retour &agrave; la page d'accueil ? <a href="index.html">Acc&eacute;der
+                                    &agrave; la page de connexion</a>
+                            </p>
 						</form>
 					</div>
 				</div>

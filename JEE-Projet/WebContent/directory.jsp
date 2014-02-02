@@ -35,10 +35,10 @@
         <table class="directory"
             style="border-collapse: collapse; border-spacing: 0">
             <tr>
-                <th>NumÃ©ro d'identification</th>
+                <th>Num&eacute;ro d'identification</th>
                 <th>Nom</th>
-                <th>PrÃ©nom</th>
-                <th>Adresse Ã©lectronique</th>
+                <th>Prénom</th>
+                <th>Adresse &eacute;lectronique</th>
                 <th>Anniversaire</th>
                 <th>Site internet</th>
             </tr>
@@ -49,7 +49,7 @@
                     <td>${person.firstName}</td>
                     <td>${person.mail}</td>
                     <td>${person.birthdate}</td>
-                    <td><a href="http://${person.website}">{person.website}</a></td>
+                    <td><a href="http://${person.website}">${person.website}</a></td>
                 </tr>
             </c:forEach>
         </table>

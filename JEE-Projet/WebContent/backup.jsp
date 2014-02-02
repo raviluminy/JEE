@@ -23,17 +23,26 @@
 <link rel="shortcut icon" href="../favicon.ico">
 <link rel="stylesheet" type="text/css" href="html/css/background.css" />
 <link rel="stylesheet" type="text/css" href="html/css/form.css" />
-<link rel="stylesheet" type="text/css" href="html/css/animate-custom.css" />
+<link rel="stylesheet" type="text/css"
+	href="html/css/animate-custom.css" />
 </head>
 <body>
 	<div class="container">
 		<!-- Top bar -->
 		<header>
-			<h1>Vérification des données...</h1>
+			<h1>Verification des donnees en cours...</h1>
 		</header>
 		<section>
 			<div id="container_page">
-				<div class="${message_type}">${message}</div>
+				<div id="wrapper">
+					<form>
+						<p class="${message_type}">${message}</p>
+						<p class="change_link">
+							Retour &agrave; l'annuaire ? <a href="directory.html">Acc&eacute;der
+								&agrave; l'annuaire</a>
+						</p>
+					</form>
+				</div>
 			</div>
 		</section>
 	</div>
