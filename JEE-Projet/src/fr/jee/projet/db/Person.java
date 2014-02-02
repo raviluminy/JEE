@@ -57,7 +57,13 @@ public class Person implements Serializable {
 	 * Class constructor.
 	 */
 	public Person() {
-
+		this.id 		= -1;
+		this.name 		= null;
+		this.firstName 	= null;
+		this.mail 		= null;
+		this.website 	= null;
+		this.birthdate 	= null;
+		this.password 	= null;
 	}
 
 	/**
