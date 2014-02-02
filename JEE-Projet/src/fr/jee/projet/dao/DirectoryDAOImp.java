@@ -207,7 +207,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setInt(1, p.getId());
-			preparedStatement.executeUpdate();
+			preparedStatement.execute();
 		} finally {
 			// close prepared statement and connection
 			if (preparedStatement != null)
