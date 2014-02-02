@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import fr.jee.projet.dao.DirectoryDAO;
 import fr.jee.projet.db.Person;
 
 /**
@@ -123,6 +122,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		Person person = null;
+		int ident;
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -135,7 +135,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			resultSet.next();
 			
 			// Get the DB's fields
-			int ident = resultSet.getInt(1);
+			ident = resultSet.getInt(1);
 			String nom = resultSet.getString(2);
 			String prenom = resultSet.getString(3);
 			String mail = resultSet.getString(4);
@@ -153,6 +153,17 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			person.setBirthdate(anniv);
 			person.setPassword(mdp);
 			
+			
+			if (resultSet.next()) {
+				person = new Person();
+				person.setId(resultSet.getInt("Id"));
+				person.setName(resultSet.getString("Nom"));
+				person.setFirstName(resultSet.getString("Prenom"));
+				person.setWebsite(resultSet.getString("Site"));
+				person.setBirthdate(resultSet.getString("Anniversaire"));
+				person.setMail(resultSet.getString("Mail"));
+				person.setPassword(resultSet.getString("Mdp"));
+			}
 		} finally {
 			// close result set, prepared statement and connection
 			if (resultSet != null)
