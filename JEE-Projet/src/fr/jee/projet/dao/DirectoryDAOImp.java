@@ -135,6 +135,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 
 			person = new Person();
 			resultSet.next();
+			
+			// Get the DB's fields 
 			int ident = resultSet.getInt(1);
 			String nom = resultSet.getString(2);
 			String prenom = resultSet.getString(3);
@@ -142,6 +144,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			String site = resultSet.getString(5);
 			String anniv = resultSet.getString(6);
 			String mdp = resultSet.getString(7);
+			
+			// Set the fields registered into person
 			person.setId(ident);
 			person.setName(nom);
 			person.setFirstName(prenom);

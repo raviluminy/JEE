@@ -27,7 +27,7 @@ public class DirectoryJDBCTest {
 	 * The DAO service's implementation.
 	 */
 	private DirectoryDAOImp directoryDAO = null;
-	
+
 	/**
 	 * The first person.
 	 */
@@ -87,13 +87,13 @@ public class DirectoryJDBCTest {
 		Person p;
 		directoryDAO.addPerson(person1);
 		p = directoryDAO.findPerson(person1.getId());
-		Assert.assertEquals(p.getId(), 			person1.getId());
-		Assert.assertEquals(p.getBirthdate(), 	person1.getBirthdate());
-		Assert.assertEquals(p.getFirstName(), 	person1.getFirstName());
-		Assert.assertEquals(p.getMail(), 		person1.getMail());
-		Assert.assertEquals(p.getName(), 		person1.getName());
-		Assert.assertEquals(p.getPassword(), 	person1.getPassword());
-		Assert.assertEquals(p.getWebsite(), 	person1.getWebsite());
+		Assert.assertEquals(p.getId(), person1.getId());
+		Assert.assertEquals(p.getBirthdate(), person1.getBirthdate());
+		Assert.assertEquals(p.getFirstName(), person1.getFirstName());
+		Assert.assertEquals(p.getMail(), person1.getMail());
+		Assert.assertEquals(p.getName(), person1.getName());
+		Assert.assertEquals(p.getPassword(), person1.getPassword());
+		Assert.assertEquals(p.getWebsite(), person1.getWebsite());
 	}
 
 	/**
@@ -106,13 +106,13 @@ public class DirectoryJDBCTest {
 		Person p;
 		directoryDAO.addPerson(person2);
 		p = directoryDAO.findPerson(person2.getId());
-		Assert.assertEquals(p.getId(), 			person2.getId());
-		Assert.assertEquals(p.getBirthdate(), 	person2.getBirthdate());
-		Assert.assertEquals(p.getFirstName(), 	person2.getFirstName());
-		Assert.assertEquals(p.getMail(), 		person2.getMail());
-		Assert.assertEquals(p.getName(), 		person2.getName());
-		Assert.assertEquals(p.getPassword(), 	person2.getPassword());
-		Assert.assertEquals(p.getWebsite(), 	person2.getWebsite());
+		Assert.assertEquals(p.getId(), person2.getId());
+		Assert.assertEquals(p.getBirthdate(), person2.getBirthdate());
+		Assert.assertEquals(p.getFirstName(), person2.getFirstName());
+		Assert.assertEquals(p.getMail(), person2.getMail());
+		Assert.assertEquals(p.getName(), person2.getName());
+		Assert.assertEquals(p.getPassword(), person2.getPassword());
+		Assert.assertEquals(p.getWebsite(), person2.getWebsite());
 	}
 
 	/**
@@ -123,7 +123,6 @@ public class DirectoryJDBCTest {
 	@Test
 	public void findPerson() throws SQLException {
 		String expected = "Gairoard Lionel";
-//		directoryDAO.addPerson(person1);
 		Person actual;
 		actual = directoryDAO.findPerson(person1.getId());
 		Assert.assertNotNull(actual);
@@ -140,8 +139,6 @@ public class DirectoryJDBCTest {
 	public void findAllPersons() throws SQLException {
 		int expected = 2;
 		int actual;
-//		directoryDAO.addPerson(person1);
-//		directoryDAO.addPerson(person2);
 		actual = directoryDAO.findAllPersons().size();
 		Assert.assertEquals(expected, actual);
 	}
@@ -153,18 +150,17 @@ public class DirectoryJDBCTest {
 	 */
 	@Test
 	public void updatePerson() throws SQLException {
-//		directoryDAO.addPerson(person1);
 		person1.setFirstName("Ravi");
 		person1.setName("Pachy");
 		directoryDAO.updatePerson(person1);
 		Person p = directoryDAO.findPerson(1);
-		Assert.assertEquals(p.getId(), 			person1.getId());
-		Assert.assertEquals(p.getBirthdate(), 	person1.getBirthdate());
-		Assert.assertEquals(p.getFirstName(), 	person1.getFirstName());
-		Assert.assertEquals(p.getMail(), 		person1.getMail());
-		Assert.assertEquals(p.getName(), 		person1.getName());
-		Assert.assertEquals(p.getPassword(), 	person1.getPassword());
-		Assert.assertEquals(p.getWebsite(), 	person1.getWebsite());
+		Assert.assertEquals(p.getId(), person1.getId());
+		Assert.assertEquals(p.getBirthdate(), person1.getBirthdate());
+		Assert.assertEquals(p.getFirstName(), person1.getFirstName());
+		Assert.assertEquals(p.getMail(), person1.getMail());
+		Assert.assertEquals(p.getName(), person1.getName());
+		Assert.assertEquals(p.getPassword(), person1.getPassword());
+		Assert.assertEquals(p.getWebsite(), person1.getWebsite());
 	}
 
 	/**
@@ -174,8 +170,6 @@ public class DirectoryJDBCTest {
 	 */
 	@Test
 	public void deletePerson1() throws SQLException {
-//		directoryDAO.addPerson(person1);
-//		directoryDAO.addPerson(person2);
 		int expected = 1;
 		directoryDAO.deletePerson(person1);
 		int actual = directoryDAO.findAllPersons().size();
