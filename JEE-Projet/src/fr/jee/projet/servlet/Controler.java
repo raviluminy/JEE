@@ -101,7 +101,7 @@ public class Controler extends HttpServlet {
 			jspPage = doDetails(request);
 		} else if (action.equals("/edition.html")) {
 			jspPage = doEdition(request);
-		} else if (action.equals("/backup.html")) {
+		} else if (action.equals("/sauvegarde.html")) {
 			jspPage = doBackup(request);
 		} else {
 			throw new ServletException("no action");
