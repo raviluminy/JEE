@@ -9,7 +9,7 @@ import fr.jee.projet.db.Person;
  * Class representing the DAO directory interface for the person class.
  * 
  * @author Lionel Gairoard
- * @author Ravi Patchy
+ * @author Ravi Pachy
  * @version 1.0
  * @since 1.0
  * 

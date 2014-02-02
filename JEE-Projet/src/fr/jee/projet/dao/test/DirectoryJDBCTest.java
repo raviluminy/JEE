@@ -16,13 +16,13 @@ import fr.jee.projet.db.Person;
  * Testing class for JDBC interaction.
  * 
  * @author Lionel Gairoard
- * @author Ravi Patchy
+ * @author Ravi Pachy
  * @version 1.0
  * @since 1.0
  * 
  */
 @SuppressWarnings("deprecation")
-public class DirectoryDAOTest {
+public class DirectoryJDBCTest {
 
 	/**
 	 * The DAO service's implementation.
@@ -43,7 +43,7 @@ public class DirectoryDAOTest {
 	 * The URL's DB.
 	 */
 	private String url = null;
-
+	
 	/**
 	 * The first person.
 	 */
