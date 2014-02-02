@@ -122,7 +122,6 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		Person person = null;
-		int ident;
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -132,27 +131,6 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-			
-			// Get the DB's fields
-			ident = resultSet.getInt(1);
-			String nom = resultSet.getString(2);
-			String prenom = resultSet.getString(3);
-			String mail = resultSet.getString(4);
-			String site = resultSet.getString(5);
-			String anniv = resultSet.getString(6);
-			String mdp = resultSet.getString(7);
-
-			// Set the fields registered into person
-			person = new Person();
-			person.setId(ident);
-			person.setName(nom);
-			person.setFirstName(prenom);
-			person.setMail(mail);
-			person.setWebsite(site);
-			person.setBirthdate(anniv);
-			person.setPassword(mdp);
-			
 			
 			if (resultSet.next()) {
 				person = new Person();
