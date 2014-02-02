@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +23,7 @@ import fr.jee.projet.db.Person;
  * 
  */
 @SuppressWarnings("deprecation")
-public class DirectoryJDBCTest {
+public class DirectoryJDBCTest extends TestCase{
 
 	/**
 	 * The DAO service's implementation.
@@ -38,6 +40,22 @@ public class DirectoryJDBCTest {
 	 */
 	private Person person2 = new Person();
 
+	public DirectoryJDBCTest(String name) {
+		super(name);
+	}
+	
+	public static junit.framework.Test suite() {
+        TestSuite suite = new TestSuite("Test de la DAO");
+        suite.addTest(new DirectoryJDBCTest("newConnection"));
+        suite.addTest(new DirectoryJDBCTest("addPerson1"));
+        suite.addTest(new DirectoryJDBCTest("addPerson2"));
+        suite.addTest(new DirectoryJDBCTest("findPerson"));
+        suite.addTest(new DirectoryJDBCTest("findAllPersons"));
+        suite.addTest(new DirectoryJDBCTest("updatePerson"));
+        suite.addTest(new DirectoryJDBCTest("deletePerson1"));
+        return suite;
+  }
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
