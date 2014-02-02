@@ -142,7 +142,8 @@ public class DirectoryJDBCTest extends TestCase{
 	public void findPerson() throws SQLException {
 		String expected = "Gairoard Lionel";
 		Person actual;
-		actual = directoryDAO.findPerson(person1.getId());
+		int id = 1;
+		actual = directoryDAO.findPerson(id);
 		Assert.assertNotNull(actual);
 		Assert.assertEquals(expected,
 				actual.getName() + " " + actual.getFirstName());
@@ -168,10 +169,11 @@ public class DirectoryJDBCTest extends TestCase{
 	 */
 	@Test
 	public void updatePerson() throws SQLException {
+		int id = 1;
 		person1.setFirstName("Ravi");
 		person1.setName("Pachy");
 		directoryDAO.updatePerson(person1);
-		Person p = directoryDAO.findPerson(1);
+		Person p = directoryDAO.findPerson(id);
 		Assert.assertEquals(p.getId(), person1.getId());
 		Assert.assertEquals(p.getBirthdate(), person1.getBirthdate());
 		Assert.assertEquals(p.getFirstName(), person1.getFirstName());

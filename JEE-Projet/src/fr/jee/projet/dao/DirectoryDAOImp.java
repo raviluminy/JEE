@@ -131,7 +131,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				person = new Person();
 				person.setId(resultSet.getInt("Id"));
@@ -207,7 +207,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setInt(1, p.getId());
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
 		} finally {
 			// close prepared statement and connection
 			if (preparedStatement != null)
@@ -228,7 +228,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			String query = "UPDATE Personne SET Nom = ?, Prenom = ?, Mail = ?,"
 					+ "Site = ?, Anniversaire = ?, Mdp = ? WHERE Id = ?";
 			preparedStatement = connection.prepareStatement(query);
-
+	
 			preparedStatement.setString(1, p.getName());
 			preparedStatement.setString(2, p.getFirstName());
 			preparedStatement.setString(3, p.getMail());
