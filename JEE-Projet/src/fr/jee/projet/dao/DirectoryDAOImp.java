@@ -15,7 +15,7 @@ import fr.jee.projet.db.Person;
  * Class implementing the DAO directory interface with JDBC.
  * 
  * @author Lionel Gairoard
- * @author Ravi Patchy
+ * @author Ravi Pachy
  * @version 1.0
  * @since 1.0
  * 

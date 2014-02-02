@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Class representing the person database.
  * 
  * @author Lionel Gairoard
- * @author Ravi Patchy
+ * @author Ravi Pachy
  * @version 1.0
  * @since 1.0
  * 
