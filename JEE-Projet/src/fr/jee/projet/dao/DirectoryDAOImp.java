@@ -163,7 +163,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			connection = newConnection();
 
 			String query = "INSERT INTO Personne("
-					+ " Nom, Prenom, Mail, Site, Anniversaire, Mdp)"
+					+ "Id, Nom, Prenom, Mail, Site, Anniversaire, Mdp)"
 					+ "VALUES (default, ?, ?, ?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
