@@ -157,7 +157,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet keys = null;
-		
+
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -165,7 +165,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			String query = "INSERT INTO Personne("
 					+ "Id, Nom, Prenom, Mail, Site, Anniversaire, Mdp)"
 					+ "VALUES (default, ?, ?, ?, ?, ?, ?)";
-			preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			preparedStatement = connection.prepareStatement(query,
+					Statement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setString(1, p.getName());
 			preparedStatement.setString(2, p.getFirstName());
@@ -173,16 +174,16 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement.setString(4, p.getWebsite());
 			preparedStatement.setString(5, p.getBirthdate());
 			preparedStatement.setString(6, p.getPassword());
-			
+
 			int n = preparedStatement.executeUpdate();
 
-			if(n == 1) {
+			if (n == 1) {
 				keys = preparedStatement.getGeneratedKeys();
 				if (keys.next()) {
 					p.setId(keys.getInt(1));
 				}
 			}
-			
+
 		} finally {
 			// close prepared statement and connection
 			if (preparedStatement != null)
@@ -197,7 +198,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int id = p.getId();
-		
+
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -224,18 +225,17 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			// create new connection and statement
 			connection = newConnection();
 
-			String query = "UPDATE Personne VALUES (?, ?, ?, ?, ?, ?, ?)"
-					+ "WHERE Id = ?";
+			String query = "UPDATE Personne SET Nom = ?, Prenom = ?, Mail = ?,"
+					+ "Site = ?, Anniversaire = ?, Mdp = ? WHERE Id = ?";
 			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setInt(8, p.getId());
-			preparedStatement.setInt(1, p.getId());
-			preparedStatement.setString(2, p.getName());
-			preparedStatement.setString(3, p.getFirstName());
-			preparedStatement.setString(4, p.getMail());
-			preparedStatement.setString(5, p.getWebsite());
-			preparedStatement.setString(6, p.getBirthdate());
-			preparedStatement.setString(7, p.getPassword());
+			preparedStatement.setString(1, p.getName());
+			preparedStatement.setString(2, p.getFirstName());
+			preparedStatement.setString(3, p.getMail());
+			preparedStatement.setString(4, p.getWebsite());
+			preparedStatement.setString(5, p.getBirthdate());
+			preparedStatement.setString(6, p.getPassword());
+			preparedStatement.setInt(7, p.getId());
 
 			int nbLignes = preparedStatement.executeUpdate();
 			System.out.println(nbLignes + " ligne(s) insérée(s)");
