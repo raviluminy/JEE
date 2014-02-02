@@ -169,10 +169,16 @@ public class DirectoryJDBCTest extends TestCase{
 	 */
 	@Test
 	public void updatePerson() throws SQLException {
-		int id = 1;
-		person1.setFirstName("Ravi");
-		person1.setName("Pachy");
-		directoryDAO.updatePerson(person1);
+		// On récupère la première personne de la BDD ...
+		Person q = directoryDAO.findAllPersons().iterator().next();
+		// ... et en particulier son id
+		int id = q.getId();
+		// On modifie son nom et prénom
+		q.setFirstName("Ravi");
+		q.setName("Pachy");
+		// On la met à jour
+		directoryDAO.updatePerson(q);
+		// On vérifie que la modification est effective après la mise à jour
 		Person p = directoryDAO.findPerson(id);
 		Assert.assertEquals(p.getId(), person1.getId());
 		Assert.assertEquals(p.getBirthdate(), person1.getBirthdate());
