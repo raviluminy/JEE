@@ -31,12 +31,12 @@ import fr.jee.projet.db.Person;
 public class Controler extends HttpServlet {
 
 	/**
-	 * 
+	 * Serial ID.
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
+	 * DAO interface.
 	 */
 	public DirectoryDAO directoryDAO = null;
 

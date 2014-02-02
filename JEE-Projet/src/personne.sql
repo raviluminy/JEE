@@ -1,6 +1,6 @@
 ﻿DROP TABLE IF EXISTS Personne CASCADE;
 CREATE TABLE Personne (
-Id              INTEGER,
+Id              SERIAL,
 Nom             VARCHAR(256)    NOT NULL,
 Prenom          VARCHAR(256)    NOT NULL,
 Mail            VARCHAR(256)    NOT NULL,
