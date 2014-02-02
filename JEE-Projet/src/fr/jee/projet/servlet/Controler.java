@@ -151,6 +151,7 @@ public class Controler extends HttpServlet {
 		int id;
 		boolean errors = false;
 		StringBuffer message = new StringBuffer();
+		String empty = new String("");
 
 		/*
 		 * Récupération de l'id de la personne en train d'être modifiée ou en
@@ -205,11 +206,11 @@ public class Controler extends HttpServlet {
 			message.append("Vous devez entrer une adresse email<br/>");
 		}
 		/* Vérification du mot de passe */
-		if (pass == null || pass == "") {
+		if (pass == null || empty.compareTo(pass) == 0) {
 			errors = true;
 			message.append("Vous devez spécifier un mot de passe<br/>");
 		}
-		if (pass != pass_confirm) {
+		else if (pass.compareTo(pass_confirm) != 0) {
 			errors = true;
 			message.append("Les mots de passe ne correspondent pas<br/>");
 		}
@@ -266,7 +267,6 @@ public class Controler extends HttpServlet {
 	 *            : The request at the servlet.
 	 * @return The JSP's filename.
 	 */
-	// TODO : Terminer l'édition d'une personne.
 	private String doEdition(HttpServletRequest request) {
 		String nom, prenom, mail, date_naissance, site, pass, pass_confirm;
 		int id;
@@ -298,22 +298,13 @@ public class Controler extends HttpServlet {
 		if (ids != null)
 			id = Integer.parseInt(request.getParameter("id"));
 
-		/* virer */
-		p = getPerson1();
-		if (id == 2)
-			p = getPerson2();
-		/* /virer */
-
 		request.setAttribute("person", p);
-		// if(id != -1) {
-		// try {
-		// p = directoryDAO.findPerson(id);
-		// if(p == null) System.out.println("p nul");;
-		// request.setAttribute("person", p);
-		// request.setAttribute("page_title", "Détails de "
-		// + p.getFirstName()+" "+p.getName());
-		// } catch (SQLException e) {e.printStackTrace();}
-		// }
+		if(id != -1) {
+			try {
+				p = directoryDAO.findPerson(id);
+				request.setAttribute("person", p);
+			} catch (SQLException e) {e.printStackTrace();}
+		}
 		return "/details.jsp";
 	}
 
@@ -325,42 +316,9 @@ public class Controler extends HttpServlet {
 	 * @return The JSP's filename.
 	 * @throws SQLException
 	 */
-	// TODO : Terminer l'affiche de l'annuaire.
 	private String doDirectory(HttpServletRequest request) throws SQLException {
 		Collection<Person> col = directoryDAO.findAllPersons();
 		request.setAttribute("persons", col);
 		return "/directory.jsp";
-	}
-
-	/* Fonctions pour remplacer DAO */
-	private Person getPerson1() {
-		Person p = new Person();
-		p.setId(1);
-		p.setFirstName("harry");
-		p.setName("Cover");
-		p.setBirthdate("01/01/1900");
-		p.setMail("h@c.com");
-		p.setPassword("123456");
-		p.setWebsite("www.qdqzd.com");
-		return p;
-	}
-
-	private Person getPerson2() {
-		Person p = new Person();
-		p.setId(2);
-		p.setFirstName("jean");
-		p.setName("bon");
-		p.setBirthdate("01/01/1500");
-		p.setMail("j@b.com");
-		p.setPassword("1zdqd23456");
-		p.setWebsite("www.jeanbon.com");
-		return p;
-	}
-
-	private Collection<Person> getPersons() {
-		ArrayList<Person> al = new ArrayList<Person>();
-		al.add(getPerson1());
-		al.add(getPerson2());
-		return al;
 	}
 }
