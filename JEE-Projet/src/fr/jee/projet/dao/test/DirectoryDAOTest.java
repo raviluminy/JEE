@@ -22,12 +22,27 @@ import fr.jee.projet.db.Person;
  * 
  */
 @SuppressWarnings("deprecation")
-public class DirectoryJDBCTest {
+public class DirectoryDAOTest {
 
 	/**
 	 * The DAO service's implementation.
 	 */
-	private DirectoryDAOImp directoryJDBC = new DirectoryDAOImp();
+	private DirectoryDAOImp directoryDAO = null;
+
+	/**
+	 * The user name of the DB.
+	 */
+	private String user = null;
+
+	/**
+	 * The password's user.
+	 */
+	private String password = null;
+
+	/**
+	 * The URL's DB.
+	 */
+	private String url = null;
 
 	/**
 	 * The first person.
@@ -44,6 +59,12 @@ public class DirectoryJDBCTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		// Initialize the class fields.
+		url = "jdbc:postgresql://localhost/jee";
+		user = "lionel";
+		password = "projet";
+		directoryDAO = new DirectoryDAOImp(url, user, password);
+
 		// Initialize the first person.
 		person1.setId(1);
 		person1.setName("Gairoard");
@@ -73,7 +94,7 @@ public class DirectoryJDBCTest {
 		boolean expected = true;
 		boolean actual = false;
 
-		Connection connection = directoryJDBC.newConnection();
+		Connection connection = directoryDAO.newConnection();
 		if (connection != null)
 			actual = true;
 		Assert.assertEquals(expected, actual);
@@ -86,7 +107,7 @@ public class DirectoryJDBCTest {
 	 */
 	@Test
 	public void addPerson1() throws SQLException {
-		directoryJDBC.addPerson(person1);
+		directoryDAO.addPerson(person1);
 	}
 
 	/**
@@ -96,9 +117,9 @@ public class DirectoryJDBCTest {
 	 */
 	@Test
 	public void addPerson2() throws SQLException {
-		directoryJDBC.addPerson(person2);
+		directoryDAO.addPerson(person2);
 	}
-	
+
 	/**
 	 * Test the search of one person.
 	 * 
@@ -108,7 +129,7 @@ public class DirectoryJDBCTest {
 	public void findPerson() throws SQLException {
 		String expected = "Gairoard Lionel";
 		Person actual = null;
-		actual = directoryJDBC.findPerson(person1.getId());
+		actual = directoryDAO.findPerson(person1.getId());
 		Assert.assertEquals(expected,
 				actual.getName() + " " + actual.getFirstName());
 	}
@@ -122,10 +143,10 @@ public class DirectoryJDBCTest {
 	public void findAllPersons() throws SQLException {
 		int expected = 2;
 		int actual;
-		actual = directoryJDBC.findAllPersons().size();
+		actual = directoryDAO.findAllPersons().size();
 		Assert.assertEquals(expected, actual);
 	}
-	
+
 	/**
 	 * Test the update of the first person.
 	 * 
@@ -133,7 +154,7 @@ public class DirectoryJDBCTest {
 	 */
 	@Ignore
 	public void updatePerson() throws SQLException {
-		directoryJDBC.updatePerson(person1);
+		directoryDAO.updatePerson(person1);
 	}
 
 	/**
@@ -143,7 +164,7 @@ public class DirectoryJDBCTest {
 	 */
 	@Ignore
 	public void deletePerson1() throws SQLException {
-		directoryJDBC.deletePerson(person1);
+		directoryDAO.deletePerson(person1);
 	}
 
 	/**
@@ -153,7 +174,7 @@ public class DirectoryJDBCTest {
 	 */
 	@Ignore
 	public void deletePerson2() throws SQLException {
-		directoryJDBC.deletePerson(person2);
+		directoryDAO.deletePerson(person2);
 	}
 
 }

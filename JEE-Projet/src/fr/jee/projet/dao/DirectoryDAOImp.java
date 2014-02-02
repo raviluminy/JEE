@@ -21,21 +21,70 @@ import fr.jee.projet.db.Person;
  * 
  */
 public class DirectoryDAOImp implements DirectoryDAO {
-	
-	private String url, user, pass;
-	
+
+	private String url, user, password;
+
 	/**
 	 * Constructor
-	 * @param Url to access the DB
-	 * @param user the user name to connect with to the DB
-	 * @param pass the password to use to connect the DB 
+	 * 
+	 * @param Url
+	 *            the URL to access to the DB.
+	 * @param user
+	 *            the user name to connect with to the DB
+	 * @param password
+	 *            the password to use to connect to the DB
 	 */
-	public DirectoryDAOImp(String url, String user, String pass){
-		this.url = url;
-		this.user = user;
-		this.pass = pass;
+	public DirectoryDAOImp(String url, String user, String password) {
+		this.setUrl(url);
+		this.setUser(user);
+		this.setPassword(password);
 	}
-	
+
+	/**
+	 * @return the user of the DB.
+	 */
+	public String getUser() {
+		return user;
+	}
+
+	/**
+	 * @return the password of the user.
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @return the url's DB.
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * @param url
+	 *            the url to set into the DB.
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	/**
+	 * @param password
+	 *            the password to set for DB connection.
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @param user
+	 *            the user to set for DB connection.
+	 */
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 	@Override
 	public Collection<Person> findAllPersons() throws SQLException {
 		Collection<Person> persons = null;
@@ -194,9 +243,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 	 * @throws SQLException
 	 */
 	public Connection newConnection() throws SQLException {
-		final String url = "jdbc:postgresql://localhost/jee";
-		Connection connection = DriverManager.getConnection(url, "lionel",
-				"projet");
+		Connection connection = DriverManager.getConnection(getUrl(),
+				getUser(), getPassword());
 		return connection;
 	}
 

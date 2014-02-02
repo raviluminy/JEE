@@ -1,10 +1,16 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="fr" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="fr" class="no-js ie7 lt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="fr" class="no-js ie8 lt8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="fr" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="fr" class="no-js">
+<html lang="fr">
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8" />
@@ -13,11 +19,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Page d'accueil" />
 <meta name="keywords" content="html5, css3, form" />
-<meta name="author" content="Codrops" />
+<meta name="author" content="jee" />
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css" href="css/background.css" />
-<link rel="stylesheet" type="text/css" href="css/form.css" />
-<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+<link rel="stylesheet" type="text/css" href="html/css/background.css" />
+<link rel="stylesheet" type="text/css" href="html/css/form.css" />
+<link rel="stylesheet" type="text/css"
+	href="html/css/animate-custom.css" />
 </head>
 <body>
 	<div class="container">
@@ -31,7 +38,7 @@
 					id="tologin"></a>
 				<div id="wrapper">
 					<div id="login" class="animate form">
-						<form action="annuaire.html" autocomplete="on">
+						<form autocomplete="on" method="post">
 							<h1>Identification</h1>
 							<p>
 								<label for="username" class="uname" data-icon="u">
@@ -45,12 +52,11 @@
 									required="required" type="password"
 									placeholder="exemple : abcd1234" />
 							</p>
-							<p class="
-									login button">
+							<p class="login button">
 								<input type="submit" value="Connexion" />
 							</p>
 							<p class="change_link">
-								Ajout d'un membre ? <a href="edition.html" class="to_register">Formulaire
+								Ajout d'un membre ? <a href="/edition.html" class="to_register">Formulaire
 									d'enregistrement</a>
 							</p>
 						</form>

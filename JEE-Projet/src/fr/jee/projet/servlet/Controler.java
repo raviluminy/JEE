@@ -27,7 +27,7 @@ import fr.jee.projet.db.Person;
  * @since 1.0
  * 
  */
-@WebServlet(urlPatterns = { "*.htm" }, loadOnStartup = 1)
+@WebServlet(urlPatterns = { "*.html" }, loadOnStartup = 1)
 public class Controler extends HttpServlet {
 
 	/**
@@ -61,6 +61,18 @@ public class Controler extends HttpServlet {
 		directoryDAO = new DirectoryDAOImp(url, user, pass);
 	}
 
+	@Override
+	protected void doPut(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		service(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		service(request, response);
+	}
+
 	/**
 	 * @see Servlet#destroy()
 	 */
@@ -69,7 +81,7 @@ public class Controler extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Select the right service according the servlet request.
 	 */
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -77,18 +89,19 @@ public class Controler extends HttpServlet {
 		String action = request.getServletPath();
 		String jspPage = null;
 		// Choose the right method and execute the request
-		if (action.equals("/directory.htm")) {
+		if (action.equals("/index.jsp")) {
+			jspPage = doIndex(request);
+		} else if (action.equals("/directory.jsp")) {
 			try {
 				jspPage = doDirectory(request);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (action.equals("/details.htm")) {
+		} else if (action.equals("/details.html")) {
 			jspPage = doDetails(request);
-		} else if (action.equals("/edition.htm")) {
+		} else if (action.equals("/edition.html")) {
 			jspPage = doEdition(request);
-		} else if (action.equals("/backup.htm")) {
+		} else if (action.equals("/backup.html")) {
 			jspPage = doBackup(request);
 		} else {
 			throw new ServletException("no action");
@@ -97,6 +110,42 @@ public class Controler extends HttpServlet {
 		request.getRequestDispatcher(jspPage).forward(request, response);
 	}
 
+	/**
+	 * Display the home page.
+	 * 
+	 * @param request
+	 *            : The request at the servlet.
+	 * @return The JSP's filename.
+	 */
+	private String doIndex(HttpServletRequest request) {
+		// Récupérer les données reçues du formulaire
+		String login = (String) request.getParameter("username");
+		String password = (String) request.getParameter("password");
+
+		// Si l'un des champs est vide
+		if (login.equals("") || password.equals("")) {
+			request.setAttribute("erreur",
+					"Vous devez remplir les deux champs.");
+			// Redirection vers le formulaire index.jsp
+			return "/index.jsp";
+		}
+		// Sinon
+		else {
+			request.setAttribute("login", login);
+			request.setAttribute("password", password);
+			// Redirection vers la page directory.jsp
+			return "/directory.jsp";
+		}
+	}
+
+	/**
+	 * Do the backup of an user. If the user is unknown, the method add him into
+	 * the database. Otherwise, update the new fields.
+	 * 
+	 * @param request
+	 *            : The request at the servlet.
+	 * @return The JSP's filename.
+	 */
 	private String doBackup(HttpServletRequest request) {
 		String nom, prenom, mail, date_naissance, site, pass, pass_confirm;
 		int id;
@@ -110,10 +159,10 @@ public class Controler extends HttpServlet {
 		id = -1;
 		try {
 			id = Integer.parseInt(request.getParameter("id")); // A rajouter en
-																// type="hidden"
-																// dans le
-																// formulaire
-																// d'édition
+			// type="hidden"
+			// dans le
+			// formulaire
+			// d'édition
 		} catch (NumberFormatException e) {
 			errors = true;
 			message.append("Erreur lors de la récupération de l'id de la "
@@ -210,10 +259,17 @@ public class Controler extends HttpServlet {
 		return "/backup.jsp";
 	}
 
+	/**
+	 * Do the edition of an user.
+	 * 
+	 * @param request
+	 *            : The request at the servlet.
+	 * @return The JSP's filename.
+	 */
+	// TODO : Terminer l'édition d'une personne.
 	private String doEdition(HttpServletRequest request) {
 		String nom, prenom, mail, date_naissance, site, pass, pass_confirm;
 		int id;
-		Person newPerson;
 
 		/* Récupération des paramètres du formulaire d'édition */
 		prenom = request.getParameter("userfirstnamesignup");
@@ -223,27 +279,17 @@ public class Controler extends HttpServlet {
 		site = request.getParameter("websitesignup"); // Facultatif
 		pass = request.getParameter("passwordsignup");
 		pass_confirm = request.getParameter("passwordsignup_confirm");
-		
-		/* Initialisation des champs d'une personne au sein de la basse de donnée */
-		newPerson = new Person();
-		newPerson.setName(nom);
-		newPerson.setFirstName(prenom);
-		newPerson.setBirthdate(date_naissance);
-		newPerson.setMail(mail);
-		newPerson.setWebsite(site);
-		newPerson.setPassword(pass);
-		newPerson.setFirstName(nom);
-		
-		try {
-			directoryDAO.addPerson(newPerson);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		return "/edition.jsp";
 	}
 
+	/**
+	 * Display the details information of an user.
+	 * 
+	 * @param request
+	 *            : The request at the servlet.
+	 * @return The JSP's filename.
+	 */
 	private String doDetails(HttpServletRequest request) {
 		String ids = request.getParameter("id");
 		Person p = null;
@@ -271,6 +317,15 @@ public class Controler extends HttpServlet {
 		return "/details.jsp";
 	}
 
+	/**
+	 * Display the users registered in the database.
+	 * 
+	 * @param request
+	 *            : The request at the servlet.
+	 * @return The JSP's filename.
+	 * @throws SQLException
+	 */
+	// TODO : Terminer l'affiche de l'annuaire.
 	private String doDirectory(HttpServletRequest request) throws SQLException {
 		Collection<Person> col = directoryDAO.findAllPersons();
 		request.setAttribute("persons", col);
@@ -308,5 +363,4 @@ public class Controler extends HttpServlet {
 		al.add(getPerson2());
 		return al;
 	}
-
 }
