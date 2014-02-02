@@ -21,9 +21,9 @@
 <meta name="keywords" content="html5, css3" />
 <meta name="author" content="jee" />
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css" href="css/background.css" />
-<link rel="stylesheet" type="text/css" href="css/form.css" />
-<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+<link rel="stylesheet" type="text/css" href="html/css/background.css" />
+<link rel="stylesheet" type="text/css" href="html/css/form.css" />
+<link rel="stylesheet" type="text/css" href="html/css/animate-custom.css" />
 </head>
 <body>
 	<div class="container">

@@ -21,10 +21,10 @@
  <meta name="keywords" content="html5, css3, form" />
  <meta name="author" content="Codrops" />
  <link rel="shortcut icon" href="../favicon.ico">
- <link rel="stylesheet" type="text/css" href="css/background.css" />
- <link rel="stylesheet" type="text/css" href="css/form.css" />
- <link rel="stylesheet" type="text/css" href="css/table.css" />
- <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+ <link rel="stylesheet" type="text/css" href="html/css/background.css" />
+ <link rel="stylesheet" type="text/css" href="html/css/form.css" />
+ <link rel="stylesheet" type="text/css" href="html/css/table.css" />
+ <link rel="stylesheet" type="text/css" href="html/css/animate-custom.css" />
  </head>
  <body>
     <div align="center">

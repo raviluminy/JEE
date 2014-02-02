@@ -89,9 +89,9 @@ public class Controler extends HttpServlet {
 		String action = request.getServletPath();
 		String jspPage = null;
 		// Choose the right method and execute the request
-		if (action.equals("/index.jsp")) {
+		if (action.equals("/index.html")) {
 			jspPage = doIndex(request);
-		} else if (action.equals("/directory.jsp")) {
+		} else if (action.equals("/directory.html")) {
 			try {
 				jspPage = doDirectory(request);
 			} catch (SQLException e) {

@@ -38,7 +38,7 @@
 					id="tologin"></a>
 				<div id="wrapper">
 					<div id="login" class="animate form">
-						<form action="/Controler" autocomplete="on" method="post">
+						<form action="directory.html" autocomplete="on" method="post">
 							<h1>Identification</h1>
 							<p>
 								<label for="username" class="uname" data-icon="u">
@@ -56,7 +56,7 @@
 								<input type="submit" value="Connexion" />
 							</p>
 							<p class="change_link">
-								Ajout d'un membre ? <a href="/Controler" class="to_register">Formulaire
+								Ajout d'un membre ? <a href="edition.html" class="to_register">Formulaire
 									d'enregistrement</a>
 							</p>
 						</form>
