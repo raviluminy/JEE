@@ -51,7 +51,6 @@ public class DirectoryJDBCTest {
 		directoryDAO = new DirectoryDAOImp(url, user, password);
 
 		// Initialize the first person.
-		person1.setId(1);
 		person1.setName("Gairoard");
 		person1.setFirstName("Lionel");
 		person1.setMail("lionel.gairoard@gmail.com");
@@ -60,7 +59,6 @@ public class DirectoryJDBCTest {
 		person1.setPassword("Condemned123?");
 
 		// Initialize the second person.
-		person2.setId(2);
 		person2.setName("Gairoard");
 		person2.setFirstName("Arnaud");
 		person2.setMail("arnaud.gairoard@gmail.com");
@@ -89,7 +87,7 @@ public class DirectoryJDBCTest {
 	public void addPerson1() throws SQLException {
 		Person p;
 		directoryDAO.addPerson(person1);
-		p = directoryDAO.findPerson(1);
+		p = directoryDAO.findPerson(person1.getId());
 		Assert.assertEquals(p.getId(), 			person1.getId());
 		Assert.assertEquals(p.getBirthdate(), 	person1.getBirthdate());
 		Assert.assertEquals(p.getFirstName(), 	person1.getFirstName());
@@ -108,7 +106,7 @@ public class DirectoryJDBCTest {
 	public void addPerson2() throws SQLException {
 		Person p;
 		directoryDAO.addPerson(person2);
-		p = directoryDAO.findPerson(2);
+		p = directoryDAO.findPerson(person2.getId());
 		Assert.assertEquals(p.getId(), 			person2.getId());
 		Assert.assertEquals(p.getBirthdate(), 	person2.getBirthdate());
 		Assert.assertEquals(p.getFirstName(), 	person2.getFirstName());
