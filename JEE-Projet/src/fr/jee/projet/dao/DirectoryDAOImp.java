@@ -122,7 +122,6 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		Person person = null;
-		int ident;
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -132,7 +131,6 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
-			resultSet.next();
 			
 			if (resultSet.next()) {
 				person = new Person();
