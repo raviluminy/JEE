@@ -180,13 +180,13 @@ public class DirectoryJDBCTest extends TestCase{
 		directoryDAO.updatePerson(q);
 		// On vérifie que la modification est effective après la mise à jour
 		Person p = directoryDAO.findPerson(id);
-		Assert.assertEquals(p.getId(), person1.getId());
-		Assert.assertEquals(p.getBirthdate(), person1.getBirthdate());
-		Assert.assertEquals(p.getFirstName(), person1.getFirstName());
-		Assert.assertEquals(p.getMail(), person1.getMail());
-		Assert.assertEquals(p.getName(), person1.getName());
-		Assert.assertEquals(p.getPassword(), person1.getPassword());
-		Assert.assertEquals(p.getWebsite(), person1.getWebsite());
+		Assert.assertEquals(p.getId(), q.getId());
+		Assert.assertEquals(p.getBirthdate(), q.getBirthdate());
+		Assert.assertEquals(p.getFirstName(), q.getFirstName());
+		Assert.assertEquals(p.getMail(), q.getMail());
+		Assert.assertEquals(p.getName(), q.getName());
+		Assert.assertEquals(p.getPassword(), q.getPassword());
+		Assert.assertEquals(p.getWebsite(), q.getWebsite());
 	}
 
 	/**
