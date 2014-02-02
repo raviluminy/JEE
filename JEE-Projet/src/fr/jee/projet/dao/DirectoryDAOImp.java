@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import fr.j2ee.beans.Personne;
 import fr.jee.projet.dao.DirectoryDAO;
 import fr.jee.projet.db.Person;
 
@@ -123,6 +124,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		Person person = null;
+		int ident;
 		try {
 			// create new connection and statement
 			connection = newConnection();
@@ -132,27 +134,17 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
-
-			person = new Person();
-			resultSet.next();
 			
-			// Get the DB's fields 
-			int ident = resultSet.getInt(1);
-			String nom = resultSet.getString(2);
-			String prenom = resultSet.getString(3);
-			String mail = resultSet.getString(4);
-			String site = resultSet.getString(5);
-			String anniv = resultSet.getString(6);
-			String mdp = resultSet.getString(7);
-			
-			// Set the fields registered into person
-			person.setId(ident);
-			person.setName(nom);
-			person.setFirstName(prenom);
-			person.setMail(mail);
-			person.setWebsite(site);
-			person.setBirthdate(anniv);
-			person.setPassword(mdp);
+			if (resultSet.next()) {
+				person = new Person();
+				person.setId(resultSet.getInt("Id"));
+				person.setName(resultSet.getString("Nom"));
+				person.setFirstName(resultSet.getString("Prenom"));
+				person.setWebsite(resultSet.getString("Site"));
+				person.setBirthdate(resultSet.getString("Anniversaire"));
+				person.setMail(resultSet.getString("Mail"));
+				person.setPassword(resultSet.getString("Mdp"));
+			}
 		} finally {
 			// close result set, prepared statement and connection
 			if (resultSet != null)
