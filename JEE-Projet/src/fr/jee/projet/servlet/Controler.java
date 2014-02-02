@@ -293,18 +293,18 @@ public class Controler extends HttpServlet {
 	private String doDetails(HttpServletRequest request) {
 		String ids = request.getParameter("id");
 		Person p = null;
-		int id = 1;
+		int id = -1;
 
 		if (ids != null)
 			id = Integer.parseInt(request.getParameter("id"));
 
-		request.setAttribute("person", p);
 		if(id != -1) {
 			try {
 				p = directoryDAO.findPerson(id);
 				request.setAttribute("person", p);
 			} catch (SQLException e) {e.printStackTrace();}
 		}
+		request.setAttribute("person", p);
 		return "/details.jsp";
 	}
 
