@@ -19,7 +19,6 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="description" content="annuaire" />
  <meta name="keywords" content="html5, css3, form" />
- <meta name="author" content="Codrops" />
  <link rel="shortcut icon" href="../favicon.ico">
  <link rel="stylesheet" type="text/css" href="html/css/background.css" />
  <link rel="stylesheet" type="text/css" href="html/css/form.css" />
@@ -47,7 +46,7 @@
                 <tr onclick="document.location='details.html';">
                     <td>${person.id}</td>
                     <td>${person.name}</td>
-                    <td>${person.firstname}</td>
+                    <td>${person.firstName}</td>
                     <td>${person.mail}</td>
                     <td>${person.birthdate}</td>
                     <td><a href="http://${person.website}">{person.website}</a></td>
