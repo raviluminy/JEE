@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -155,23 +156,33 @@ public class DirectoryDAOImp implements DirectoryDAO {
 	public void addPerson(Person p) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		ResultSet keys = null;
+		
 		try {
 			// create new connection and statement
 			connection = newConnection();
 
 			String query = "INSERT INTO Personne("
-					+ " Id, Nom, Prenom, Mail, Site, Anniversaire, Mdp)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-			preparedStatement = connection.prepareStatement(query);
+					+ " Nom, Prenom, Mail, Site, Anniversaire, Mdp)"
+					+ "VALUES (?, ?, ?, ?, ?, ?)";
+			preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-			preparedStatement.setInt(1, p.getId());
 			preparedStatement.setString(2, p.getName());
 			preparedStatement.setString(3, p.getFirstName());
 			preparedStatement.setString(4, p.getMail());
 			preparedStatement.setString(5, p.getWebsite());
 			preparedStatement.setString(6, p.getBirthdate());
 			preparedStatement.setString(7, p.getPassword());
-			preparedStatement.execute();
+			
+			int n = preparedStatement.executeUpdate();
+
+			if(n == 1) {
+				keys = preparedStatement.getGeneratedKeys();
+				if (keys.next()) {
+					p.setId(keys.getInt(1));
+				}
+			}
+			
 		} finally {
 			// close prepared statement and connection
 			if (preparedStatement != null)
@@ -185,15 +196,16 @@ public class DirectoryDAOImp implements DirectoryDAO {
 	public void deletePerson(Person p) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		int id = p.getId();
+		
 		try {
 			// create new connection and statement
 			connection = newConnection();
 
-			String query = "DELETE FROM Personne WHERE Nom = ? AND Prenom = ?";
+			String query = "DELETE FROM Personne WHERE Id = ?";
 			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setString(1, p.getName());
-			preparedStatement.setString(2, p.getFirstName());
+			preparedStatement.setInt(1, id);
 			preparedStatement.execute();
 		} finally {
 			// close prepared statement and connection
