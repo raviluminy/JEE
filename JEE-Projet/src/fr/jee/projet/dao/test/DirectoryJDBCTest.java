@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import junit.framework.Assert;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.jee.projet.dao.DirectoryDAOImp;
@@ -124,7 +123,7 @@ public class DirectoryJDBCTest {
 	@Test
 	public void findPerson() throws SQLException {
 		String expected = "Gairoard Lionel";
-		directoryDAO.addPerson(person1);
+//		directoryDAO.addPerson(person1);
 		Person actual;
 		actual = directoryDAO.findPerson(person1.getId());
 		Assert.assertNotNull(actual);
@@ -141,8 +140,8 @@ public class DirectoryJDBCTest {
 	public void findAllPersons() throws SQLException {
 		int expected = 2;
 		int actual;
-		directoryDAO.addPerson(person1);
-		directoryDAO.addPerson(person2);
+//		directoryDAO.addPerson(person1);
+//		directoryDAO.addPerson(person2);
 		actual = directoryDAO.findAllPersons().size();
 		Assert.assertEquals(expected, actual);
 	}
@@ -154,7 +153,7 @@ public class DirectoryJDBCTest {
 	 */
 	@Test
 	public void updatePerson() throws SQLException {
-		directoryDAO.addPerson(person1);
+//		directoryDAO.addPerson(person1);
 		person1.setFirstName("Ravi");
 		person1.setName("Pachy");
 		directoryDAO.updatePerson(person1);
@@ -175,8 +174,8 @@ public class DirectoryJDBCTest {
 	 */
 	@Test
 	public void deletePerson1() throws SQLException {
-		directoryDAO.addPerson(person1);
-		directoryDAO.addPerson(person2);
+//		directoryDAO.addPerson(person1);
+//		directoryDAO.addPerson(person2);
 		int expected = 1;
 		directoryDAO.deletePerson(person1);
 		int actual = directoryDAO.findAllPersons().size();

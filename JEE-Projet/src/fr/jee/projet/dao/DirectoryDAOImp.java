@@ -127,7 +127,8 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			// create new connection and statement
 			connection = newConnection();
 
-			String query = "SELECT Id, Nom, Prenom FROM Personne WHERE Id = ?";
+			String query = "SELECT Id, Nom, Prenom, Mail, Site, Anniversaire, Mdp"
+					+ " FROM Personne WHERE Id = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
@@ -137,9 +138,17 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			int ident = resultSet.getInt(1);
 			String nom = resultSet.getString(2);
 			String prenom = resultSet.getString(3);
+			String mail = resultSet.getString(4);
+			String site = resultSet.getString(5);
+			String anniv = resultSet.getString(6);
+			String mdp = resultSet.getString(7);
 			person.setId(ident);
 			person.setName(nom);
 			person.setFirstName(prenom);
+			person.setMail(mail);
+			person.setWebsite(site);
+			person.setBirthdate(anniv);
+			person.setPassword(mdp);
 		} finally {
 			// close result set, prepared statement and connection
 			if (resultSet != null)
