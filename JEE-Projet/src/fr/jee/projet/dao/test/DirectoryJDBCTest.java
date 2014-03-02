@@ -59,6 +59,7 @@ public class DirectoryJDBCTest extends TestCase {
 		suite.addTest(new DirectoryJDBCTest("findAllPersons"));
 		suite.addTest(new DirectoryJDBCTest("updatePerson"));
 		suite.addTest(new DirectoryJDBCTest("deletePerson1"));
+		suite.addTest(new DirectoryJDBCTest("deletePerson2"));
 		return suite;
 	}
 
@@ -220,4 +221,21 @@ public class DirectoryJDBCTest extends TestCase {
 		int actual = directoryDAO.findAllPersons().size();
 		Assert.assertEquals(expected, actual);
 	}
+	
+	/**
+	 * Test the delete of the second person.
+	 * 
+	 * @throws SQLException
+	 */
+	@Test
+	public void deletePerson2() throws SQLException {
+		int before = directoryDAO.findAllPersons().size();
+		int expected = before - 1;
+		// On récupère la première personne de la BDD
+		Person q = directoryDAO.findAllPersons().iterator().next();
+		directoryDAO.deletePerson(q);
+		int actual = directoryDAO.findAllPersons().size();
+		Assert.assertEquals(expected, actual);
+	}
+
 }

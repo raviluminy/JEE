@@ -141,11 +141,7 @@ public class Controller extends HttpServlet {
 		 */
 		id = -1;
 		try {
-			id = Integer.parseInt(request.getParameter("id")); // A rajouter en
-			// type="hidden"
-			// dans le
-			// formulaire
-			// d'édition
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			errors = true;
 			message.append("Erreur lors de la récupération de l'id de la "
@@ -273,6 +269,7 @@ public class Controller extends HttpServlet {
 	 */
 	private String doDetails(HttpServletRequest request) {
 		String ids = request.getParameter("id");
+		System.out.println("\nID : " + ids);
 		Person p = null;
 		int id = -1;
 
