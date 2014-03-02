@@ -23,14 +23,13 @@
 <link rel="shortcut icon" href="../favicon.ico">
 <link rel="stylesheet" type="text/css" href="html/css/background.css" />
 <link rel="stylesheet" type="text/css" href="html/css/form.css" />
-<link rel="stylesheet" type="text/css" href="html/css/animate-custom.css" />
+<link rel="stylesheet" type="text/css"
+	href="html/css/animate-custom.css" />
 </head>
 <body>
 	<div class="container">
 		<header>
-			<h1>
-				<!-- Espace -->
-			</h1>
+			<h1>Formulaire d'enregistrement</h1>
 		</header>
 		<section>
 			<div id="container_page">
@@ -44,9 +43,9 @@
 								<input type="hidden" name="id" value="${person.id}">
 							<p>
 								<label for="userfirstnamesignup" class="ufirstname"
-									data-icon="u">Pr&eacute;nom</label> <input id="userfirstnamesignup"
-									name="userfirstnamesignup" required="required" type="text"
-									placeholder="Pierre" />
+									data-icon="u">Pr&eacute;nom</label> <input
+									id="userfirstnamesignup" name="userfirstnamesignup"
+									required="required" type="text" placeholder="Pierre" />
 							</p>
 							<p>
 								<label for="usernamesignup" class="uname" data-icon="u">Nom
@@ -86,9 +85,9 @@
 								<input type="submit" value="Enregistrer" />
 							</p>
 							<p class="change_link">
-                                Retour &agrave; la page d'accueil ? <a href="index.html">Acc&eacute;der
-                                    &agrave; la page de connexion</a>
-                            </p>
+								Retour &agrave; la page d'accueil ? <a href="index.html">Acc&eacute;der
+									&agrave; la page de connexion</a>
+							</p>
 						</form>
 					</div>
 				</div>

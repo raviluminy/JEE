@@ -2,7 +2,6 @@ package fr.jee.projet.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.Servlet;
@@ -19,7 +18,7 @@ import fr.jee.projet.dao.DirectoryDAOImp;
 import fr.jee.projet.db.Person;
 
 /**
- * Servlet implementation class Controler.
+ * Servlet implementation class Controller.
  * 
  * @author Lionel Gairoard
  * @author Ravi Pachy
@@ -28,7 +27,7 @@ import fr.jee.projet.db.Person;
  * 
  */
 @WebServlet(urlPatterns = { "*.html" }, loadOnStartup = 1)
-public class Controler extends HttpServlet {
+public class Controller extends HttpServlet {
 
 	/**
 	 * Serial ID.
@@ -43,7 +42,7 @@ public class Controler extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Controler() {
+	public Controller() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

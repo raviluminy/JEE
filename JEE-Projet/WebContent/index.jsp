@@ -39,7 +39,6 @@
 				<div id="wrapper">
 					<div id="login" class="animate form">
 						<form action="directory.html" autocomplete="on" method="post">
-							<h1>Identification</h1>
 							<p>
 								<label for="username" class="uname" data-icon="u">
 									Adresse électronique </label> <input id="username" name="username"

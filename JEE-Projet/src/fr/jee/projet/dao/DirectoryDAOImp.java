@@ -227,7 +227,7 @@ public class DirectoryDAOImp implements DirectoryDAO {
 			String query = "UPDATE Personne SET Nom = ?, Prenom = ?, Mail = ?,"
 					+ "Site = ?, Anniversaire = ?, Mdp = ? WHERE Id = ?";
 			preparedStatement = connection.prepareStatement(query);
-	
+
 			preparedStatement.setString(1, p.getName());
 			preparedStatement.setString(2, p.getFirstName());
 			preparedStatement.setString(3, p.getMail());
@@ -257,6 +257,50 @@ public class DirectoryDAOImp implements DirectoryDAO {
 		Connection connection = DriverManager.getConnection(getUrl(),
 				getUser(), getPassword());
 		return connection;
+	}
+
+	/**
+	 * Create Person's database.
+	 * 
+	 * @throws SQLException
+	 */
+	public void createPersonDB() throws SQLException {
+		Connection connection = null;
+		PreparedStatement dropPreparedStatement = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			// create new connection and statement
+			connection = newConnection();
+
+			String dropQuery = "DROP TABLE IF EXISTS Personne CASCADE";
+			String query = "CREATE TABLE Personne ("
+					+ "Id SERIAL, Nom VARCHAR(256) NOT NULL,"
+					+ "Prenom VARCHAR(256) NOT NULL,"
+					+ "Mail VARCHAR(256) NOT NULL,"
+					+ "Site VARCHAR(256),"
+					+ "Anniversaire VARCHAR(10),"
+					+ "Mdp VARCHAR(256) NOT NULL,"
+					+ "CONSTRAINT PK_Personne PRIMARY KEY (Id),"
+					+ "CONSTRAINT Format_Mail CHECK (Mail ~ '^[a-z0-9._-]+[@][a-z0-9._-]{2,}[.][a-z]{2,4}$'),"
+					+ "CONSTRAINT Format_Site CHECK (Site ~ '^[w]{3}[.][(0-9)*a-zA-Z_]+[.][a-zA-Z_]{2,4}$'),"
+					+ "CONSTRAINT Format_Anniversaire CHECK (Anniversaire ~ '^(([0][1-9]|[2][0-9])|[3][0-1])([.]|[:]|[-]|[/])([0][1-9]|[1][0-2])([.]|[:]|[-]|[/])([19][0-9]{3}|[20][0-9]{3})$'))";
+
+			// Drop the table "Personne" if exist
+			dropPreparedStatement = connection.prepareStatement(dropQuery);
+			dropPreparedStatement.executeUpdate();
+
+			// Create the table "Personne"
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.executeUpdate();
+
+			System.out.println("Table \"Personne\" créée");
+		} finally {
+			// close statement and connection
+			if (preparedStatement != null)
+				preparedStatement.close();
+			if (connection != null)
+				connection.close();
+		}
 	}
 
 }

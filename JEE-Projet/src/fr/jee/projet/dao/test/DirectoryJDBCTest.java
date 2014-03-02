@@ -23,7 +23,7 @@ import fr.jee.projet.db.Person;
  * 
  */
 @SuppressWarnings("deprecation")
-public class DirectoryJDBCTest extends TestCase{
+public class DirectoryJDBCTest extends TestCase {
 
 	/**
 	 * The DAO service's implementation.
@@ -43,19 +43,25 @@ public class DirectoryJDBCTest extends TestCase{
 	public DirectoryJDBCTest(String name) {
 		super(name);
 	}
-	
+
+	/**
+	 * Composite of tests of the directory interaction.
+	 * 
+	 * @return the current test.
+	 */
 	public static junit.framework.Test suite() {
-        TestSuite suite = new TestSuite("Test de la DAO");
-        suite.addTest(new DirectoryJDBCTest("newConnection"));
-        suite.addTest(new DirectoryJDBCTest("addPerson1"));
-        suite.addTest(new DirectoryJDBCTest("addPerson2"));
-        suite.addTest(new DirectoryJDBCTest("findPerson"));
-        suite.addTest(new DirectoryJDBCTest("findAllPersons"));
-        suite.addTest(new DirectoryJDBCTest("updatePerson"));
-        suite.addTest(new DirectoryJDBCTest("deletePerson1"));
-        return suite;
-  }
-	
+		TestSuite suite = new TestSuite("Test de la DAO");
+		suite.addTest(new DirectoryJDBCTest("createPersonDB"));
+		suite.addTest(new DirectoryJDBCTest("newConnection"));
+		suite.addTest(new DirectoryJDBCTest("addPerson1"));
+		suite.addTest(new DirectoryJDBCTest("addPerson2"));
+		suite.addTest(new DirectoryJDBCTest("findPerson"));
+		suite.addTest(new DirectoryJDBCTest("findAllPersons"));
+		suite.addTest(new DirectoryJDBCTest("updatePerson"));
+		suite.addTest(new DirectoryJDBCTest("deletePerson1"));
+		return suite;
+	}
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -82,6 +88,16 @@ public class DirectoryJDBCTest extends TestCase{
 		person2.setWebsite("www.youtube.fr");
 		person2.setBirthdate("03/12/1989");
 		person2.setPassword("evanescence");
+	}
+
+	/**
+	 * Test the database creation.
+	 * 
+	 * @throws SQLException
+	 */
+	@Test
+	public void createPersonDB() throws SQLException {
+		directoryDAO.createPersonDB();
 	}
 
 	/**

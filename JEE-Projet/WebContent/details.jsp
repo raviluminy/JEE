@@ -23,14 +23,13 @@
 <link rel="shortcut icon" href="../favicon.ico">
 <link rel="stylesheet" type="text/css" href="html/css/background.css" />
 <link rel="stylesheet" type="text/css" href="html/css/form.css" />
-<link rel="stylesheet" type="text/css" href="html/css/animate-custom.css" />
+<link rel="stylesheet" type="text/css"
+	href="html/css/animate-custom.css" />
 </head>
 <body>
 	<div class="container">
 		<header>
-			<h1>
-				<!-- Espace -->
-			</h1>
+			<h1>Details</h1>
 		</header>
 		<section>
 			<div id="container_page">

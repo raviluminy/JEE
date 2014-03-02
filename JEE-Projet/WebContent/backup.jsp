@@ -38,8 +38,8 @@
 					<form>
 						<p class="${message_type}">${message}</p>
 						<p class="change_link">
-							Retour &agrave; l'annuaire ? <a href="directory.html">Acc&eacute;der
-								&agrave; l'annuaire</a>
+							Retour au formulaire ? <a href="edition.html">Acc&eacute;der
+								au formulaire</a>
 						</p>
 					</form>
 				</div>
