@@ -85,7 +85,7 @@
 								<input type="submit" value="Enregistrer" />
 							</p>
 							<p class="change_link">
-								Retour &agrave; la page d'accueil ? <a href="index.html">Acc&eacute;der
+								Retour &agrave; la page d'accueil ? <a href="index.jsp">Acc&eacute;der
 									&agrave; la page de connexion</a>
 							</p>
 						</form>

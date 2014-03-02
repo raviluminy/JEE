@@ -5,7 +5,7 @@
 	version="3.0">
 	<display-name>JEE-Projet</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>db_url</param-name>
@@ -20,12 +20,12 @@
 		<param-value>projet</param-value>
 	</context-param>
 	<servlet>
-		<servlet-name>Controler</servlet-name>
-		<servlet-class>fr.jee.projet.servlet.Controler</servlet-class>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>fr.jee.projet.servlet.Controller</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Controler</servlet-name>
-		<url-pattern>/Controler</url-pattern>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>/Controller</url-pattern>
 	</servlet-mapping>
 </web-app>

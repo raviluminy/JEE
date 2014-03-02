@@ -117,24 +117,7 @@ public class Controller extends HttpServlet {
 	 * @return The JSP's filename.
 	 */
 	private String doIndex(HttpServletRequest request) {
-		// Récupérer les données reçues du formulaire
-		String login = (String) request.getParameter("username");
-		String password = (String) request.getParameter("password");
-
-		// Si l'un des champs est vide
-		if (login.equals("") || password.equals("")) {
-			request.setAttribute("erreur",
-					"Vous devez remplir les deux champs.");
-			// Redirection vers le formulaire index.jsp
-			return "/index.jsp";
-		}
-		// Sinon
-		else {
-			request.setAttribute("login", login);
-			request.setAttribute("password", password);
-			// Redirection vers la page directory.jsp
-			return "/directory.jsp";
-		}
+		return "/index.jsp";
 	}
 
 	/**
@@ -208,8 +191,7 @@ public class Controller extends HttpServlet {
 		if (pass == null || empty.compareTo(pass) == 0) {
 			errors = true;
 			message.append("Vous devez spécifier un mot de passe<br/>");
-		}
-		else if (pass.compareTo(pass_confirm) != 0) {
+		} else if (pass.compareTo(pass_confirm) != 0) {
 			errors = true;
 			message.append("Les mots de passe ne correspondent pas<br/>");
 		}
@@ -297,11 +279,13 @@ public class Controller extends HttpServlet {
 		if (ids != null)
 			id = Integer.parseInt(request.getParameter("id"));
 
-		if(id != -1) {
+		if (id != -1) {
 			try {
 				p = directoryDAO.findPerson(id);
 				request.setAttribute("person", p);
-			} catch (SQLException e) {e.printStackTrace();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		request.setAttribute("person", p);
 		return "/details.jsp";
@@ -316,8 +300,26 @@ public class Controller extends HttpServlet {
 	 * @throws SQLException
 	 */
 	private String doDirectory(HttpServletRequest request) throws SQLException {
-		Collection<Person> col = directoryDAO.findAllPersons();
-		request.setAttribute("persons", col);
-		return "/directory.jsp";
+		// Récupérer les données reçues de l'authentification
+		String login = (String) request.getParameter("username");
+		String password = (String) request.getParameter("password");
+
+		// Si l'un des champs est vide
+		if (login.equals("") || password.equals("")) {
+			request.setAttribute("erreur",
+					"Vous devez remplir les deux champs.");
+			// Redirection vers le formulaire index.jsp
+			return "index.jsp";
+		}
+		// Sinon
+		else {
+			request.setAttribute("login", login);
+			request.setAttribute("password", password);
+			Collection<Person> col = directoryDAO.findAllPersons();
+			request.setAttribute("persons", col);
+			// Redirection vers la page directory.jsp
+			return "/directory.jsp";
+		}
 	}
+
 }

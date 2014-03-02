@@ -15,7 +15,7 @@
 <head>
 <meta charset="UTF-8" />
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-<title>Page d'accueil</title>
+<title>Annuaire</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="annuaire" />
 <meta name="keywords" content="html5, css3, form" />
@@ -27,38 +27,44 @@
 	href="html/css/animate-custom.css" />
 </head>
 <body>
-	<div class="container" align="center">
+	<div class="container">
 		<!-- Top bar -->
 		<header>
 			<h1>Annuaire du personnel</h1>
 		</header>
-		<div class=container_page>
-			<table class="directory"
-				style="border-collapse: collapse; border-spacing: 0">
-				<tr>
-					<th>Num&eacute;ro d'identification</th>
-					<th>Nom</th>
-					<th>Prénom</th>
-					<th>Adresse &eacute;lectronique</th>
-					<th>Anniversaire</th>
-					<th>Site internet</th>
-				</tr>
-				<c:forEach var="person" items="${persons}">
-					<tr onclick="document.location='details.html';">
-						<td>${person.id}</td>
-						<td>${person.name}</td>
-						<td>${person.firstName}</td>
-						<td>${person.mail}</td>
-						<td>${person.birthdate}</td>
-						<td><a href="http://${person.website}">${person.website}</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-			<p class="change_link">
-				Retour &agrave; la page d'accueil ? <a href="index.html">Acc&eacute;der
-					&agrave; la page de connexion</a>
-			</p>
-		</div>
+		<section>
+			<div id=container_page>
+				<div align="center">
+					<table class="directory"
+						style="border-collapse: collapse; border-spacing: 0">
+						<tr>
+							<th>Num&eacute;ro d'identification</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Adresse &eacute;lectronique</th>
+							<th>Anniversaire</th>
+							<th>Site internet</th>
+						</tr>
+						<c:forEach var="person" items="${persons}">
+							<tr onclick="document.location='details.html';">
+								<td>${person.id}</td>
+								<td>${person.name}</td>
+								<td>${person.firstName}</td>
+								<td>${person.mail}</td>
+								<td>${person.birthdate}</td>
+								<td><a href="http://${person.website}">${person.website}</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<div id="wrapper">
+						<p class="change_link">
+							Retour &agrave; la page d'accueil ? <a href="index.html">Acc&eacute;der
+								&agrave; la page de connexion</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 </body>
 </html>
