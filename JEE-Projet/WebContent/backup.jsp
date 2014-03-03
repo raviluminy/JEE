@@ -38,7 +38,7 @@
 					<form>
 						<p class="${message_type}">${message}</p>
 						<p class="change_link">
-							Retour au formulaire ? <a href="edition.html">Acc&eacute;der
+							Retour au formulaire ? <a href="edition.html?id=${person.id}">Acc&eacute;der
 								au formulaire</a>
 						</p>
 					</form>

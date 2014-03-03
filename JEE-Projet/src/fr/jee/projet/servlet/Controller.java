@@ -57,7 +57,6 @@ public class Controller extends HttpServlet {
 		String user = context.getInitParameter("db_user");
 		String pass = context.getInitParameter("db_pass");
 		this.directoryDAO = new DirectoryDAOImp(url, user, pass);
-		directoryDAO = new DirectoryDAOImp(url, user, pass);
 	}
 
 	@Override
@@ -121,7 +120,7 @@ public class Controller extends HttpServlet {
 	}
 
 	/**
-	 * Do the backup of an user. If the user is unknown, the method add him into
+	 * Do the backup of a user. If the user is unknown, the method add him into
 	 * the database. Otherwise, update the new fields.
 	 * 
 	 * @param request
@@ -247,16 +246,23 @@ public class Controller extends HttpServlet {
 	private String doEdition(HttpServletRequest request) {
 		String nom, prenom, mail, date_naissance, site, pass, pass_confirm;
 		int id;
+		Person p = new Person();
+		
+		id = -1;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			p = directoryDAO.findPerson(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-		/* Récupération des paramètres du formulaire d'édition */
-		prenom = request.getParameter("userfirstnamesignup");
-		nom = request.getParameter("usernamesignup");
-		date_naissance = request.getParameter("birthdatesignup");
-		mail = request.getParameter("emailsignup");
-		site = request.getParameter("websitesignup"); // Facultatif
-		pass = request.getParameter("passwordsignup");
-		pass_confirm = request.getParameter("passwordsignup_confirm");
-
+		request.setAttribute("person", p);
+		
 		return "/edition.jsp";
 	}
 

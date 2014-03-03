@@ -45,33 +45,33 @@
 								<label for="userfirstnamesignup" class="ufirstname"
 									data-icon="u">Pr&eacute;nom</label> <input
 									id="userfirstnamesignup" name="userfirstnamesignup"
-									required="required" type="text" placeholder="Pierre" />
+									required="required" type="text" placeholder="Pierre" value="${person.firstName}" />
 							</p>
 							<p>
 								<label for="usernamesignup" class="uname" data-icon="u">Nom
 									de famille</label> <input id="usernamesignup" name="usernamesignup"
-									required="required" type="text" placeholder="Dupont" />
+									required="required" type="text" placeholder="Dupont" value="${person.name}" />
 							</p>
 							<p>
 								<label for="emailsignup" class="youmail" data-icon="e">
 									Adresse &eacute;lectronique</label> <input id="emailsignup"
-									name="emailsignup" required="required" type="email"
+									name="emailsignup" required="required" type="email"  value="${person.mail}"
 									placeholder="monadresse@mail.com" />
 							</p>
 							<p>
 								<label for="birthdatesignup" class="youbirthdate" data-icon="b">
 									Date de naissance</label> <input id="birthdatesignup"
-									name="birthdatesignup" type="date" placeholder="31/12/2014" />
+									name="birthdatesignup" type="date" placeholder="31/12/2014"  value="${person.birthdate}"/>
 							</p>
 							<p>
 								<label for="websitesignup" class="youwebsite" data-icon="w">
-									Site internet</label> <input id="websitesignup" name="websitesignup"
+									Site internet</label> <input id="websitesignup" name="websitesignup"  value="${person.website}"
 									type="url" placeholder="www.monsiteweb.com" />
 							</p>
 							<p>
 								<label for="passwordsignup" class="youpasswd" data-icon="p">Entrez
 									votre mot de passe </label> <input id="passwordsignup"
-									name="passwordsignup" required="required" type="password"
+									name="passwordsignup" required="required" type="password"  value="${person.password}"
 									placeholder="exemple :  abcd1234" />
 							</p>
 							<p>
